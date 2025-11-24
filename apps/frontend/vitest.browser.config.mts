@@ -12,9 +12,9 @@ export default defineConfig({
       instances: [
         {
           browser: "chromium",
-          name: "chromium",
         },
       ],
     },
+    include: ["**/*.browser.test.tsx"],
   },
 });

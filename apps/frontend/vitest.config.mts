@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     ...uiConfig.test,
-    include: ["tests/node/**/*.test.ts"],
+    include: ["**/*.test.ts"],
     setupFiles: ["tsconfig-paths/register"],
   },
 });
