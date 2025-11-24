@@ -24,6 +24,10 @@
       "cache": false,
       "persistent": true
     },
+    "test:browser": {
+      "cache": false,
+      "persistent": true
+    },
     "transit": {
       "dependsOn": ["^transit"]
     }

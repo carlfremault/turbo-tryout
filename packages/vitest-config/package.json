@@ -17,11 +17,11 @@
     "view-report": "open-cli coverage/report/index.html"
   },
   "dependencies": {
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.13"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@vitest/coverage-istanbul": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.13",
     "@vitest/ui": "3.0.7",
     "glob": "^11.0.1",
     "jsdom": "^26.0.0",

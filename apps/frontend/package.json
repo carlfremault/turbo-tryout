@@ -2,13 +2,15 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "test:browser": "vitest --config=vitest.browser.config.mts"
   },
   "dependencies": {
     "next": "16.0.3",
@@ -21,9 +23,15 @@
     "@repo/vitest-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@types/react": "19.2.6",
-    "@vitest/coverage-v8": "^4.0.12",
+    "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/browser": "4.0.13",
+    "@vitest/browser-playwright": "4.0.13",
+    "@vitest/coverage-v8": "4.0.13",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",
-    "vitest": "^4.0.12"
+    "tsconfig-paths": "^4.2.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "4.0.13",
+    "vitest-browser-react": "^2.0.2"
   }
 }
