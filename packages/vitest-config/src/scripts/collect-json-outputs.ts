@@ -2,68 +2,63 @@ import fs from "fs/promises";
 import path from "path";
 import { glob } from "glob";
 
+async function fileExists(filePath: string) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function collectCoverageFiles() {
   try {
-    // Define the patterns to search
+    // Folders to scan
     const patterns = ["../../apps/*", "../../packages/*"];
-
-    // Define the destination directory (you can change this as needed)
     const destinationDir = path.join(process.cwd(), "coverage/raw");
-
-    // Create the destination directory if it doesn't exist
     await fs.mkdir(destinationDir, { recursive: true });
 
-    // Arrays to collect all directories and directories with coverage.json
-    const allDirectories = [];
-    const directoriesWithCoverage = [];
+    const coverageFiles = [
+      "coverage.json",
+      "coverage-node.json",
+      "coverage-browser.json",
+    ];
+    const collected: string[] = [];
 
-    // Process each pattern
     for (const pattern of patterns) {
-      // Find all paths matching the pattern
       const matches = await glob(pattern);
 
-      // Filter to only include directories
       for (const match of matches) {
         const stats = await fs.stat(match);
+        if (!stats.isDirectory()) continue;
 
-        if (stats.isDirectory()) {
-          allDirectories.push(match);
-          const coverageFilePath = path.join(match, "coverage.json");
+        for (const coverageFile of coverageFiles) {
+          // Check root
+          let coverageFilePath = path.join(match, coverageFile);
 
-          // Check if coverage.json exists in this directory
-          try {
-            await fs.access(coverageFilePath);
-
-            // File exists, add to list of directories with coverage
-            directoriesWithCoverage.push(match);
-
-            // Copy it to the destination with a unique name
-            const directoryName = path.basename(match);
-            const destinationFile = path.join(
-              destinationDir,
-              `${directoryName}.json`
-            );
-
-            await fs.copyFile(coverageFilePath, destinationFile);
-          } catch (err) {
-            // File doesn't exist in this directory, skip
+          // Check inside "coverage/" folder
+          if (!(await fileExists(coverageFilePath))) {
+            coverageFilePath = path.join(match, "coverage", coverageFile);
+            if (!(await fileExists(coverageFilePath))) continue;
           }
+
+          // Copy to raw/ with unique name
+          const fileName = `${path.basename(match)}-${coverageFile.replace(".json", "")}.json`;
+          const destFile = path.join(destinationDir, fileName);
+          await fs.copyFile(coverageFilePath, destFile);
+
+          collected.push(`${match}/${coverageFile}`);
         }
       }
     }
 
-    // Create clean patterns for display (without any "../" prefixes)
-    const replaceDotPatterns = (str: string) => str.replace(/\.\.\//g, "");
-
-    if (directoriesWithCoverage.length > 0) {
-      console.log(
-        `Found coverage.json in: ${directoriesWithCoverage
-          .map(replaceDotPatterns)
-          .join(", ")}`
-      );
+    if (collected.length > 0) {
+      console.log("Found coverage files:", collected.join(", "));
+    } else {
+      console.log("No coverage files found.");
     }
 
-    console.log(`Coverage collected into: ${path.join(process.cwd())}`);
+    console.log("Coverage collected into:", destinationDir);
   } catch (error) {
     console.error("Error collecting coverage files:", error);
   }

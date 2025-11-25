@@ -26,6 +26,7 @@
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/browser": "4.0.13",
     "@vitest/browser-playwright": "4.0.13",
+    "@vitest/coverage-istanbul": "^4.0.13",
     "@vitest/coverage-v8": "4.0.13",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",

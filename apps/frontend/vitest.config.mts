@@ -7,6 +7,13 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     ...uiConfig.test,
+    coverage: {
+      ...uiConfig.test.coverage,
+      provider: "v8",
+      reporter: [["json", { file: "coverage-node.json" }]],
+      reportsDirectory: "./coverage",
+    },
+    environment: "node",
     include: ["**/*.test.ts"],
     setupFiles: ["tsconfig-paths/register"],
   },
