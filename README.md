@@ -1,6 +1,10 @@
 # Turborepo tryout
 
-This repo started as an experiment with various configs. Along the way, it’s naturally evolved into more of a Turborepo boilerplate. Some explanations are included, both to help others understand the setup and for future reference for myself 😄.
+This repo started as an experiment with various configs. Along the way, it’s naturally evolving into more of a Turborepo boilerplate. Some explanations are included, both to help others understand the setup and for future reference for myself 😄.
+
+- The monorepo was bootstrapped using `create-turbo@latest`.
+- The Next.js app was created with `create-next-app`.
+- Vitest configuration is based on the official docs, the Turborepo Vitest example, and a fair bit of trial, error, and AI-assisted problem solving.
 
 ## Turborepo setup
 
