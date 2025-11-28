@@ -9,7 +9,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
-  res.json({ message: "Hello from the API!" });
+  res.json({ message: "Hello from the Express API!" });
 });
 
 app.listen(port, () => {

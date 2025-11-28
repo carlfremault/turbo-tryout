@@ -12,6 +12,7 @@ export default defineConfig({
       provider: "v8",
       reporter: [["json", { file: "coverage-node.json" }]],
       reportsDirectory: "./coverage",
+      include: ["src/**/*.ts", "src/**/*.tsx"],
     },
     environment: "node",
     include: ["**/*.test.ts"],
