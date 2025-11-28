@@ -10,7 +10,7 @@ This repo started as an experiment with various configs. Along the way, it’s n
 
 ### Apps
 
-- frontend: a NextJS/React app
+- web: a NextJS/React web app
   - **Tech stack**: Next.js, TypeScript, Tailwind, Vitest
   - **Vitest tests**:
     - “browser” tests
@@ -23,7 +23,11 @@ This repo started as an experiment with various configs. Along the way, it’s n
       - Fast unit tests for utilities, server logic, hooks, etc.
       - Use Vitest + jsdom
       - need to be named `*.test.ts` to be taken into account
-- …
+- api: an Express.js api
+  - **Tech stack**: Express.js, TypeScript, Vitest
+  - **Vitest tests**:
+    - “node” tests
+      - Same as for the frontend node tests
 
 ### Packages
 
@@ -40,12 +44,13 @@ This repo started as an experiment with various configs. Along the way, it’s n
 | `lint`         | Runs ESLint                                                                                       |
 | `check-types`  | Runs TypeScript type checking                                                                     |
 | `dev`          | Runs development servers                                                                          |
-| `test`         | Runs the "node" tests                                                                             |
+| `test`         | Runs the "node" tests and collects coverage                                                       |
 | `test:watch`   | Runs the "node" tests in watch mode                                                               |
-| `test:browser` | Runs the "browser" tests (opens up a Chromium browser window)                                     |
+| `test:browser` | Runs the "browser" tests (opens up a Chromium browser window) and collects coverage               |
 | `view-report`  | Collects and merges coverage reports for both "node" and "browser" tests (opens a browser window) |
 
 ## What I’ve learned so far
 
 - How to set up a Turborepo monorepo with shared ESLint, TypeScript, and Vitest configuration
 - How to configure Vitest for both Node (jsdom) and Browser (Playwright) testing
+- How to configure Vitest test coverage collection for coverage reports

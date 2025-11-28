@@ -13,10 +13,13 @@
     "view-report": "turbo run view-report"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
+    "nodemon": "^3.1.11",
     "playwright": "^1.56.1",
     "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
     "turbo": "^2.6.1",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   },
   "engines": {
     "node": ">=18"
