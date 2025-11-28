@@ -13,8 +13,7 @@
     "report": {
       "dependsOn": ["merge-json-reports"],
       "inputs": ["coverage/merged/**"],
-      "outputs": ["coverage/report/**"],
-      "cache": false
+      "outputs": ["coverage/report/**"]
     },
     "view-report": {
       "dependsOn": ["report"],
