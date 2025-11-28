@@ -7,12 +7,14 @@
     "merge-json-reports": {
       "dependsOn": ["collect-json-reports"],
       "inputs": ["coverage/raw/**"],
-      "outputs": ["coverage/merged/**"]
+      "outputs": ["coverage/merged/**"],
+      "cache": false
     },
     "report": {
       "dependsOn": ["merge-json-reports"],
-      "inputs": ["coverage/merge"],
-      "outputs": ["coverage/report/**"]
+      "inputs": ["coverage/merged/**"],
+      "outputs": ["coverage/report/**"],
+      "cache": false
     },
     "view-report": {
       "dependsOn": ["report"],
