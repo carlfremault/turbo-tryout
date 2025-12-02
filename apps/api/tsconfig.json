@@ -4,7 +4,8 @@
     "outDir": "dist",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "noEmit": false
   },
   "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["dist", "node_modules"]
